@@ -13,17 +13,19 @@ import { ArrowRight, Check, ExternalLink, Flower2, Heart, MapPin, Menu, Phone, S
 import { serviceDetails } from "./services-data";
 import "swiper/css";
 
+const assetPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const services = [
-  { name: "Маникюр", text: "Аккуратное покрытие, уход и идеальные детали.", image: "/images/nails.png", cls: "service-a" },
-  { name: "Женский зал", text: "Стрижки, укладки и работа с образом.", image: "/images/hair.png", cls: "service-b" },
-  { name: "Брови и ресницы", text: "Естественная красота и выразительность взгляда.", image: "/images/brows.png", cls: "service-c" },
-  { name: "Педикюр", text: "Комфорт и ухоженность в каждой детали.", image: "/images/nails.png", cls: "service-d" },
-  { name: "Окрашивание волос", text: "Современные техники и индивидуальный оттенок.", image: "/images/hair.png", cls: "service-e" },
-  { name: "Уход за волосами", text: "Гладкость, мягкость и здоровый вид волос.", image: "/images/tools.png", cls: "service-f" },
-  { name: "Мужской зал", text: "Аккуратные формы и профессиональный уход.", image: "/images/interior.png", cls: "service-g" },
-  { name: "Макияж", text: "Образ для события, съёмки или особенного вечера.", image: "/images/hero.png", cls: "service-h" },
-  { name: "Детский зал", text: "Комфортные услуги для маленьких гостей.", image: "/images/interior.png", cls: "service-i" },
-  { name: "Солярий", text: "Ровный оттенок кожи круглый год.", image: "/images/cta.png", cls: "service-j" },
+  { name: "Маникюр", text: "Аккуратное покрытие, уход и идеальные детали.", image: assetPath("/images/nails.png"), cls: "service-a" },
+  { name: "Женский зал", text: "Стрижки, укладки и работа с образом.", image: assetPath("/images/hair.png"), cls: "service-b" },
+  { name: "Брови и ресницы", text: "Естественная красота и выразительность взгляда.", image: assetPath("/images/brows.png"), cls: "service-c" },
+  { name: "Педикюр", text: "Комфорт и ухоженность в каждой детали.", image: assetPath("/images/nails.png"), cls: "service-d" },
+  { name: "Окрашивание волос", text: "Современные техники и индивидуальный оттенок.", image: assetPath("/images/hair.png"), cls: "service-e" },
+  { name: "Уход за волосами", text: "Гладкость, мягкость и здоровый вид волос.", image: assetPath("/images/tools.png"), cls: "service-f" },
+  { name: "Мужской зал", text: "Аккуратные формы и профессиональный уход.", image: assetPath("/images/interior.png"), cls: "service-g" },
+  { name: "Макияж", text: "Образ для события, съёмки или особенного вечера.", image: assetPath("/images/hero.png"), cls: "service-h" },
+  { name: "Детский зал", text: "Комфортные услуги для маленьких гостей.", image: assetPath("/images/interior.png"), cls: "service-i" },
+  { name: "Солярий", text: "Ровный оттенок кожи круглый год.", image: assetPath("/images/cta.png"), cls: "service-j" },
 ];
 
 const reviews = [
@@ -172,14 +174,14 @@ export default function Home() {
         <motion.p className="lead" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .55 }}>Пространство, где профессиональный уход, внимание к деталям и атмосфера спокойствия помогают почувствовать себя особенно.</motion.p>
         <motion.div className="hero-actions" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .65 }}><button className="btn primary cursor-wave" onPointerMove={trackButtonWave} onClick={openBooking}><span>Записаться онлайн</span><ArrowRight /></button><a href="#services" className="btn secondary">Смотреть услуги</a></motion.div>
       </div>
-      <motion.div className="hero-media" initial={{ opacity: 0, scale: reduce ? 1 : 1.05 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease }}><Image src="/images/hero.png" alt="Beauty-портрет Sava Beauty" fill priority sizes="(max-width: 768px) 100vw, 52vw" /><div className="media-wash" /></motion.div>
+      <motion.div className="hero-media" initial={{ opacity: 0, scale: reduce ? 1 : 1.05 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease }}><Image src={assetPath("/images/hero.png")} alt="Beauty-портрет Sava Beauty" fill priority sizes="(max-width: 768px) 100vw, 52vw" /><div className="media-wash" /></motion.div>
       <motion.div className="rating-float" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9 }}><strong>5.0</strong><span>★★★★★</span><small>458+ отзывов</small></motion.div>
       <motion.div className="ritual-float" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1 }}><Flower2 /><div><strong>Beauty-ритуал</strong><small>Время для себя начинается здесь</small></div></motion.div>
     </section>
 
     <section className="stats" aria-label="Sava Beauty в цифрах"><div><strong><Counter to={5} decimals={1} /></strong><span>рейтинг</span></div><div><strong><Counter to={458} suffix="+" /></strong><span>отзывов</span></div><div><strong><Counter to={10} /></strong><span>направлений услуг</span></div><div><strong>Казань</strong><span>ул. Адоратского, 1А</span></div></section>
 
-    <section className="section about" id="about"><Reveal className="about-media"><Image src="/images/interior.png" alt="Интерьер салона Sava Beauty" fill sizes="(max-width: 768px) 100vw, 56vw" /><button aria-label="Посмотреть атмосферу"><span>▶</span></button></Reveal><Reveal className="about-copy" delay={.1}><p className="eyebrow">О SAVA BEAUTY</p><h2>Больше, чем<br />просто салон</h2><p>Sava Beauty — пространство современной красоты в Казани. Здесь можно сменить образ, привести в порядок волосы и ногти, подчеркнуть естественную красоту или просто посвятить время себе.</p><p>Мы стремимся сделать каждое посещение спокойным, комфортным и эстетичным — от первой консультации до финального результата.</p><div className="mantra"><span>Красота</span><span>Забота</span><span>Гармония</span></div></Reveal></section>
+    <section className="section about" id="about"><Reveal className="about-media"><Image src={assetPath("/images/interior.png")} alt="Интерьер салона Sava Beauty" fill sizes="(max-width: 768px) 100vw, 56vw" /><button aria-label="Посмотреть атмосферу"><span>▶</span></button></Reveal><Reveal className="about-copy" delay={.1}><p className="eyebrow">О SAVA BEAUTY</p><h2>Больше, чем<br />просто салон</h2><p>Sava Beauty — пространство современной красоты в Казани. Здесь можно сменить образ, привести в порядок волосы и ногти, подчеркнуть естественную красоту или просто посвятить время себе.</p><p>Мы стремимся сделать каждое посещение спокойным, комфортным и эстетичным — от первой консультации до финального результата.</p><div className="mantra"><span>Красота</span><span>Забота</span><span>Гармония</span></div></Reveal></section>
 
     <section className="section benefits" id="benefits"><div className="section-head"><Reveal><p className="eyebrow">НАШ ПОДХОД</p><h2>Почему выбирают<br />Sava Beauty</h2></Reveal><Reveal><p>В каждой детали — профессионализм, безопасность и бережное отношение к вашему времени.</p></Reveal></div><div className="benefit-grid">{[
       [Sparkles, "Профессиональные мастера", "Внимательно слушаем пожелания и подбираем решение под ваш образ."],
@@ -192,15 +194,15 @@ export default function Home() {
 
     <section className="section popular"><div className="section-head"><Reveal><p className="eyebrow">ПОПУЛЯРНОЕ</p><h2>Ритуалы, к которым<br />хочется возвращаться</h2></Reveal><div className="slider-arrows">Листайте →</div></div><Swiper modules={[A11y, Autoplay]} spaceBetween={18} slidesPerView={1.12} breakpoints={{ 640: { slidesPerView: 2.1 }, 1024: { slidesPerView: 3.3 } }} autoplay={reduce ? false : { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true }}>{services.slice(0, 6).map(s => <SwiperSlide key={s.name}><article className="popular-card"><div><Image src={s.image} alt={s.name} fill sizes="360px" /></div><h3>{s.name}</h3><p>{s.text}</p><button className="text-link" onClick={openBooking}>Записаться <ArrowRight /></button></article></SwiperSlide>)}</Swiper></section>
 
-    <section className="editorial"><Image src="/images/hero.png" alt="Красота как время для себя" fill sizes="100vw" /><div className="editorial-shade" /><Reveal><p className="eyebrow light">ВРЕМЯ ДЛЯ СЕБЯ</p><h2>Красота начинается<br />с момента, который<br />вы посвящаете себе.</h2><button className="btn light-btn" onClick={openBooking}>Записаться <ArrowRight /></button></Reveal></section>
+    <section className="editorial"><Image src={assetPath("/images/hero.png")} alt="Красота как время для себя" fill sizes="100vw" /><div className="editorial-shade" /><Reveal><p className="eyebrow light">ВРЕМЯ ДЛЯ СЕБЯ</p><h2>Красота начинается<br />с момента, который<br />вы посвящаете себе.</h2><button className="btn light-btn" onClick={openBooking}>Записаться <ArrowRight /></button></Reveal></section>
 
     <section className="section reviews" id="reviews"><div className="review-score"><p className="eyebrow">ОТЗЫВЫ</p><strong>5.0</strong><div>★★★★★</div><span>458+ отзывов<br />на Яндекс Картах</span><a href="https://yandex.ru/maps/org/1773346140/reviews" target="_blank" rel="noreferrer">Все отзывы <ExternalLink /></a></div><div className="review-content"><Reveal><h2>Что говорят<br />наши гости</h2></Reveal><Swiper modules={[A11y, Autoplay]} slidesPerView={1} spaceBetween={16} autoplay={reduce ? false : { delay: 6500, pauseOnMouseEnter: true, disableOnInteraction: false }}>{reviews.map((r, i) => <SwiperSlide key={r.name}><article className="review-card"><div className="avatar">{r.name[0]}</div><span>★★★★★</span><blockquote>«{r.text}»</blockquote><strong>{r.name}</strong><small>гость Sava Beauty</small><a className="review-map-link" href="https://yandex.ru/maps/org/1773346140/reviews" target="_blank" rel="noreferrer">Читать на Яндекс Картах <ExternalLink /></a><i>“</i></article></SwiperSlide>)}</Swiper></div></section>
 
     <section className="section gallery"><Reveal className="center-head"><p className="eyebrow">ПРОСТРАНСТВО</p><h2>Атмосфера Sava Beauty</h2></Reveal><div className="gallery-grid">{[
-      ["/images/interior.png", "Интерьер салона"], ["/images/hair.png", "Уход за волосами"], ["/images/tools.png", "Детали заботы"], ["/images/nails.png", "Маникюр"], ["/images/brows.png", "Брови и ресницы"], ["/images/hero.png", "Beauty-образ"]
+      [assetPath("/images/interior.png"), "Интерьер салона"], [assetPath("/images/hair.png"), "Уход за волосами"], [assetPath("/images/tools.png"), "Детали заботы"], [assetPath("/images/nails.png"), "Маникюр"], [assetPath("/images/brows.png"), "Брови и ресницы"], [assetPath("/images/hero.png"), "Beauty-образ"]
     ].map(([src, alt], i) => <Reveal key={src + i} delay={(i % 3) * .07}><Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 33vw" /></Reveal>)}</div></section>
 
-    <section className="cta"><Image src="/images/cta.png" alt="Время заботы о себе" fill sizes="100vw" /><div className="cta-shade" /><Reveal><p className="eyebrow light">SAVA BEAUTY</p><h2>Ваш момент заботы<br />о себе начинается здесь</h2><p>Выберите услугу и запишитесь в Sava Beauty в удобное время.</p><div><button className="btn light-btn" onClick={openBooking}>Записаться онлайн <ArrowRight /></button><a className="btn ghost-light" href="https://wa.me/78432033366" target="_blank" rel="noreferrer">Написать в WhatsApp</a></div></Reveal></section>
+    <section className="cta"><Image src={assetPath("/images/cta.png")} alt="Время заботы о себе" fill sizes="100vw" /><div className="cta-shade" /><Reveal><p className="eyebrow light">SAVA BEAUTY</p><h2>Ваш момент заботы<br />о себе начинается здесь</h2><p>Выберите услугу и запишитесь в Sava Beauty в удобное время.</p><div><button className="btn light-btn" onClick={openBooking}>Записаться онлайн <ArrowRight /></button><a className="btn ghost-light" href="https://wa.me/78432033366" target="_blank" rel="noreferrer">Написать в WhatsApp</a></div></Reveal></section>
 
     <section className="section faq"><div className="faq-title"><Reveal><p className="eyebrow">ВАЖНО ЗНАТЬ</p><h2>Частые<br />вопросы</h2><p>Если вашего вопроса нет в списке — позвоните нам, и администратор поможет.</p></Reveal></div><Accordion.Root type="single" collapsible className="accordion">{[
       ["Как записаться?", "Оставьте заявку на сайте или свяжитесь с салоном по телефону или WhatsApp."],

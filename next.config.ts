@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGitHubPages ? "/SavaBeauty" : "";
+
 const nextConfig: NextConfig = {
-  images: { formats: ["image/avif", "image/webp"] },
+  output: "export",
+  trailingSlash: true,
+  basePath,
+  assetPrefix: basePath,
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
